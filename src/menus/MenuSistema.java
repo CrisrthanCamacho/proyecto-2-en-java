@@ -45,9 +45,6 @@ public class MenuSistema {
     }
 }
 
-    // ============================================================
-    // INICIO DE SESIÓN
-    // ============================================================
     private void menuInicioSesion() {
 
         System.out.println("\n--- Iniciar sesión como ---");
@@ -68,9 +65,6 @@ public class MenuSistema {
         }
     }
 
-    // ============================================================
-    // MENÚ CLIENTE
-    // ============================================================
     private void menuCliente(Usuario cliente) {
         while (true) {
             System.out.println("\n===== MENÚ CLIENTE =====");
@@ -98,9 +92,6 @@ public class MenuSistema {
         }
     }
 
-    // ============================================================
-    // MENÚ ADMINISTRADOR
-    // ============================================================
     private void menuAdmin(Usuario admin) {
         while (true) {
 
@@ -123,9 +114,6 @@ public class MenuSistema {
         }
     }
 
-    // ============================================================
-    // MENÚ GESTIÓN DE CONFECCIONISTAS
-    // ============================================================
     private void menuGestionConfeccionistas() {
         while (true) {
             System.out.println("\n===== GESTIÓN DE CONFECCIONISTAS =====");
@@ -171,9 +159,6 @@ public class MenuSistema {
         }
     }
 
-    // ============================================================
-    // MENÚ GESTIÓN DE PEDIDOS
-    // ============================================================
     private void menuGestionPedidos() {
 
         GestorPedidos.UsuariosManagerRef ref =
@@ -205,9 +190,6 @@ public class MenuSistema {
         }
     }
 
-    // ============================================================
-    // SUB MENÚ EDITAR PEDIDO
-    // ============================================================
     private void menuEditarPedido() {
 
         System.out.println("--- PEDIDOS ---");

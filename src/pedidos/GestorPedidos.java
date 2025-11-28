@@ -18,11 +18,9 @@ public class GestorPedidos {
         this.scanner = scanner;
     }
 
-    // ============================================================
-    //  REGISTRAR PEDIDO (CLIENTE)
-    // ============================================================
+
     public void agregarPedido(Usuario cliente) {
-        System.out.println("\n--- REGISTRAR PEDIDO ---");
+        System.out.println("\n===== REGISTRAR PEDIDO =====");
 
         int cantidadTotal = pedirEntero("Cantidad total de prendas: ");
 
@@ -37,7 +35,7 @@ public class GestorPedidos {
 
             int suma = tallas.values().stream().mapToInt(Integer::intValue).sum();
             if (suma != cantidadTotal) {
-                System.out.println("\n❌ La suma de tallas (" + suma + ") no coincide con la cantidad total (" + cantidadTotal + ").");
+                System.out.println("\nEl total de tallas (" + suma + ") no coincide con la cantidad total (" + cantidadTotal + ").\n");
                 System.out.println("Vuelve a ingresarlas.\n");
             } else break;
         }
@@ -93,9 +91,9 @@ public class GestorPedidos {
         }
     }
 
-    // ============================================================
-    //  LISTA DE PEDIDOS DEL CLIENTE
-    // ============================================================
+
+  
+
     public void mostrarPedidosCliente(Usuario cliente) {
 
         List<Pedido> lista = pedidosPorCliente(cliente.getId());
@@ -105,7 +103,7 @@ public class GestorPedidos {
             return;
         }
 
-        System.out.println("\n--- TUS PEDIDOS ---");
+        System.out.println("\n==== TUS PEDIDOS ====");
         mostrarResumenPedidos(lista);
 
         while (true) {
@@ -121,7 +119,7 @@ public class GestorPedidos {
                         .findFirst()
                         .orElse(null);
 
-                if (p == null) System.out.println("ID no válido.");
+                if (p == null) System.out.println("ID de pedido no encontrado.");
                 else System.out.println(p);
 
             } catch (Exception e) {
@@ -149,9 +147,6 @@ public class GestorPedidos {
         }
     }
 
-    // ============================================================
-    //  PAGAR PEDIDO (CLIENTE)
-    // ============================================================
     public void pagarPedidoCliente(Usuario cliente) {
         List<Pedido> disponibles = new ArrayList<>();
 
@@ -217,9 +212,6 @@ public class GestorPedidos {
         }
     }
 
-    // ============================================================
-    //  CANCELAR PEDIDO (CLIENTE)
-    // ============================================================
     public void cancelarPedidoCliente(Usuario cliente) {
         List<Pedido> lista = pedidosPorCliente(cliente.getId());
 
@@ -249,9 +241,7 @@ public class GestorPedidos {
         System.out.println("Pedido cancelado exitosamente.");
     }
 
-    // ============================================================
-    //  ANTICIPOS (ADMIN Y CLIENTE)
-    // ============================================================
+
     public void mostrarAnticiposPedido() {
         if (pedidos.isEmpty()) {
             System.out.println("No hay pedidos.");
@@ -289,9 +279,6 @@ public class GestorPedidos {
         System.out.println("Restante: " + p.restantePorPagar());
     }
 
-    // ============================================================
-    //  VER PEDIDOS (ADMIN)
-    // ============================================================
     public void verPedidosPorOpciones(UsuariosManagerRef ref, GestionConfeccionistas gestion) {
         while (true) {
             System.out.println("\n--- VER PEDIDOS ---");
@@ -335,9 +322,6 @@ public class GestorPedidos {
                 .forEach(System.out::println);
     }
 
-    // ============================================================
-    //  ASIGNAR PEDIDO → ADMIN
-    // ============================================================
     public void asignarPedido(GestionConfeccionistas gestion) {
         List<Pedido> disponibles = pedidos.stream()
                 .filter(p -> p.getConfeccionista() == null)
@@ -375,9 +359,7 @@ public class GestorPedidos {
         System.out.println("Pedido asignado correctamente.");
     }
 
-    // ============================================================
-    //  ELIMINAR PEDIDO (ADMIN)
-    // ============================================================
+
     public void eliminarPedidoInteractive() {
         if (pedidos.isEmpty()) {
             System.out.println("No hay pedidos.");
@@ -396,24 +378,18 @@ public class GestorPedidos {
         System.out.println("Pedido eliminado.");
     }
 
-    // ============================================================
-    //  BUSCAR PEDIDO POR ID
-    // ============================================================
+
     private Pedido buscarPedido(int id) {
         for (Pedido p : pedidos) if (p.getIdPedido() == id) return p;
         return null;
     }
 
-    // ============================================================
-    //  EDITAR PEDIDO (MenuSistema llamará este método)
-    // ============================================================
+
     public EditorPedido getEditor() { return editor; }
 
     public List<Pedido> getPedidos() { return pedidos; }
 
-    // ============================================================
-    //  WRAPPER PARA ADMIN
-    // ============================================================
+
     public static class UsuariosManagerRef {
         private final List<Usuario> clientes;
 
